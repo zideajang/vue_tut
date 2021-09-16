@@ -1,41 +1,36 @@
 <template>
-<h1 v-bind:id="tutId">title: {{title}}</h1>
-<h1>lessons: {{ 2 + 5 }}</h1>
-<div v-html="subTitle"></div>
-<div v-html="moreInfo"></div>
-<button v-bind:disabled="isDisable">btn</button>
-<div v-bind:class="status">Log Level</div>
-<h1 v-bind:class="['big-size',isSuccess ? 'success':'danger']" >{{isSuccess ? 'success':'danger'}}</h1>
+<h1>{{greet}}</h1>
+<tuts/>
+
 </template>
 
 <script>
+import Tuts from './components/Tuts.vue'
 export default {
   name: 'App',
+  components:{
+    Tuts
+  },
   data(){
     return {
-      tutId:'tutId',
-      title:"machine learning",
-      subTitle:"<b>regression</b>",
-      moreInfo: `<a href="#" onclick="alert('machine learning regression')" >more info</a>`,
-      isDisable:false,
-      status:"success",
-      isSuccess:true
+      greet:"Welcome Zidea "
     }
   }
 }
 </script>
 
 <style>
-.big-size{
-  font-size: 2.25em;
+.txt_decoration{
+  text-decoration: underline;
 }
-.success{
-  color:greenyellow;
-  font-weight: bolder;
-}
-.danger {
+.danger{
   color: orangered;
-  font-weight: bolder;
+}
+.completed{
+  color: cornflowerblue;
+}
+.big-size{
+  font-size: 1.25em;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

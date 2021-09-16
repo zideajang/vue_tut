@@ -312,9 +312,25 @@ a {
 
 
 
-## 绑定
+
+
+## 数据绑定
+
+第一次接触到数据绑定概念，还是在 Angularjs 1.x 时候，Angularjs 1.x 出现让我们习惯了 JQuery 的前端开发者耳目一新，可以说一次飞跃，随着大家就开始谈了 MVVM 这种设计模式，其实这种设计模式并没有什么新意，多年前微软就在桌面应用开发中就提出了这种设计模式，只不过这一会有人将他引入到 web 开发中，有时候说明多学一些没有什么坏处，突破局限不仅要靠内力，有时候也需要跨界的灵感。
+
+
+
+| 指令名称 |      |      |
+| -------- | ---- | ---- |
+| v-text   |      |      |
+| v-html   |      |      |
+| v-bind:class   |      |      |
+| v-bind:style   |      |      |
+
+
 
 ### 绑定文本
+
 今天介绍如何将 script 代码块中数据绑定到到 template 的 UI 上，我们把 hello-world 项目中 components 中 HelloWorld 组件去掉，让项目变得比较干净这样一来便于关注要学习内容。
 
 ```vue
@@ -546,7 +562,7 @@ export default {
 
 
 
-####
+### 绑定样式
 
 ```vue
 <div v-bind:class="status">Log Level</div>
@@ -596,5 +612,179 @@ export default {
   }
 }
 </script>
+```
+
+
+
+```vue
+<template>
+<h1 v-bind:id="tutId">title: {{title}}</h1>
+<div v-html="subTitle" v-bind:class="big-size"></div>
+<div v-html="moreInfo"></div>
+<h1 v-bind:class="['big-size',isCompleted ? 'completed':'danger']" >完成</h1>
+<h1 v-bind:class="{
+  'txt_decoration':isCompleted,
+  'big-size':isCompleted,
+  'danger':isCompleted
+  }">状态{{isCompleted?"完成":"未完成"}}</h1>
+</template>
+
+<script>
+export default {
+  name: 'App',
+  data(){
+    return {
+      tutId:'tutId',
+      title:"Machine Learning",
+      subTitle:"<b>regression</b>",
+      moreInfo: `<a href="#" onclick="alert('machine learning regression')" >更多信息</a>`,
+      isCompleted:false
+    }
+  }
+}
+</script>
+
+<style>
+.txt_decoration{
+  text-decoration: underline;
+}
+.danger{
+  color: orangered;
+}
+.completed{
+  color: cornflowerblue;
+}
+.big-size{
+  font-size: 1.25em;
+}
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+div{
+  font-size: 1.2em;
+}
+</style>
+
+```
+
+
+
+## 条件渲染(Conditional Rendering)
+
+很多情况下，我们都需要根据数据来控制显示/或者不显示某些元素
+
+
+
+| 名称        |      |      |
+| ----------- | ---- | ---- |
+| v-if/v-else |      |      |
+|             |      |      |
+
+```vue
+<template>
+    <div>
+        <span v-if="count === 0">Like</span>
+        <span v-else>Like:{{count}}</span>
+    </div>
+</template>
+<script>
+
+export default{
+    name:'Like',
+    data(){
+        
+        return{
+            count:5
+        } 
+    }
+}
+</script>
+```
+
+
+
+> v-if 是动态添加，当值为false 时，是完全移除该元素，即dom 树中不存在该元素。 v-show 仅是隐藏/ 显示，值为false 时，该元素依旧存在于dom 树中。 等同给元素设置了`display: none` 而隐藏元素显示。
+
+
+
+### 渲染列表
+
+
+
+```vue
+<template>
+    <div>
+        <tut-card/>
+    </div>
+    <div v-for="title in titles" :key="title">
+        <div>{{title}}</div>
+    </div>
+    <template v-for="title in titles" :key="title">
+        <h5>{{title}}</h5>
+    </template>
+    <div style="margin-bottom:20px;">
+    </div>
+    <div v-for="(title,index) in titles" :key="title">
+        {{index}} {{title}}
+    </div>
+    <div style="margin-bottom:20px;">
+    </div>
+    <div v-for="(tut,index) in tuts" :key="tut.title">
+        {{index}} {{tut.title}}({{tut.category}})
+    </div>
+    <div v-for="category in cate" :key="category.category">
+        <div>{{category.category}}</div>
+        <h5 v-for="tut in category.tuts" :key="tut.title">{{tut.title}}</h5>
+    </div>
+    <div>
+
+    </div>
+</template>
+<script>
+import TutCard from './TutCard.vue'
+export default{
+    name:'Tuts',
+    components:{
+        TutCard
+    },
+    data(){
+        return{
+            titles:[
+                'TypeScript 深入浅出—interface 和 type',
+                'TypeScript 深入浅出—为什么我们需要 TypeScript',
+                '程序员绕不开的算法8 —基数排序算法'
+            ],
+            tuts :[
+                {title:"TypeScript 深入浅出—interface 和 type",category:"web"},
+                {title:"TypeScript 深入浅出—为什么我们需要 TypeScript",category:"web"},
+                {title:"程序员绕不开的算法8 —基数排序算法",category:"算法"}
+            ],
+            cate: [
+                {
+                    category:"machine leanring",
+                    tuts:[
+                        {title:"寻找网络最大流算法(1)—Ford-Fulkerson 算法"},
+                        {title:"深度学习框架新贵—JAX(2)—JAX 能否终结 Numpy 的时代"}
+                    ]
+                },
+                {
+                    category:"web develop",
+                    tuts:[
+                        {title:"只用 JS 自己动手实现一个 Web Component"},
+                        {title:"用于 Javascript 去解析 Javascript 自己动手写一个 Parser(1)"}
+                    ]
+                }
+            ]
+
+        }
+    }
+}
+</script>
+
 ```
 
