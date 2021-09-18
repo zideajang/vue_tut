@@ -788,3 +788,27 @@ export default{
 
 ```
 
+
+
+|       |      |      |
+| ----- | ---- | ---- |
+| -once |      |      |
+| V-pre |      |      |
+
+
+
+
+
+### Computed
+
+基于现有属性进行计算，有一个好处就是会将计算结果进行缓存。
+
+#### computed 和 watch
+
+watch 更通用，computed 派生功能都能实现，computed 属性底层来自于 watch 但是在 watch 基础上做了优化，例如缓存，因为 computed 更简单、更高效，优先使用 computed。
+
+#### computed 和 watch 应用场景
+
+- watch 需要在数据变化时执行异步或开销较大的操作时使用，简单讲，当一条数据影响多条数据的时候，例如搜索数据
+- 
+
