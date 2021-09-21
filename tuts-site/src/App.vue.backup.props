@@ -1,19 +1,19 @@
 <template>
-
 <div class="container">
-  <MyComp/>
+  <Person/>
 </div>
+
 </template>
 
 <script>
-import MyComp from './components/Reuse/MyComp.vue'
+import Person from './components/Option/Person.vue';
+     
 export default {
   
   name: 'App',
   components:{
-    MyComp
-  },
-  
+      Person
+  }
 }
 </script>
 

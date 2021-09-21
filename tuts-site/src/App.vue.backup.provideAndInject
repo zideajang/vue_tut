@@ -1,0 +1,55 @@
+<template>
+<div class="container">
+  <div class="control">
+    <button class="button" @click="incrementCount" > increment </button>
+  </div>
+  <ChildA/>
+</div>
+
+</template>
+
+<script>
+import ChildA from './components/Option/ChildA.vue'
+import {provide, ref, reactive} from 'vue';
+export default {
+  
+  name: 'App',
+  
+  setup(){
+    provide('refProvideTitle','machine learning 2');
+    const count = ref('10');
+    const refTut = reactive({
+      refTitle: "machine learning title",
+      refContent:"machine learning content"
+    });
+
+    function incrementCount(){
+      count.value ++;
+    }
+
+    provide('count',count);
+    provide('refTut',refTut);
+    provide('incrementCount',incrementCount)
+
+    return {
+      count,
+      incrementCount,
+    }
+  },
+  
+  data(){
+    return {
+      title:"machine learning",
+    }
+  },
+  components:{
+    ChildA
+  },
+  provide(){
+    return{
+      title:this.title
+    }
+  }
+}
+</script>
+

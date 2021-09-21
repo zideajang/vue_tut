@@ -1,0 +1,66 @@
+<template>
+<div class="nav">
+  <h1>{{title}} site</h1>
+</div> 
+<div>
+<div v-html="subTitle"></div>
+
+</div>
+<div>
+  <input type="text" v-model="tut"/>
+</div>
+<div>
+  <input type="text" v-model="tutDetail.title"/>
+</div>
+<div>
+  <input type="text" v-model.number="tutDetail.lesson"/>
+</div>
+<tut-card/>
+</template>
+
+<script>
+import TutCard from "./components/TutCard.vue"
+export default {
+  name: 'App',
+  data(){
+    return {
+      title:"Zidea",
+      subTitle:"<b> machine leanring</b>",
+      tut:"machine learning",
+      tutDetail:{
+        title:"machine Learning",
+        lesson:12
+      }
+    }
+  },
+  components: {
+    TutCard
+  },
+  watch:{
+    tut:{
+      handler(newValue){
+        console.log(newValue)
+      },
+      immediate:true
+    },
+    tutDetail:{
+      handler(newValue){
+        console.log(`update tutle ${newValue.title} and ${newValue.lesson}`)
+      },
+      deep:true
+    }
+    
+  }
+}
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>

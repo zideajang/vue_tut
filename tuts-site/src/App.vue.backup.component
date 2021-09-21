@@ -1,0 +1,56 @@
+<template>
+<NavBar :title="title"/>
+<Article id="vue-article" title="machine learning 2" :likes=12 />
+<comp-a/>
+<button class="button" @click="showPopup=true">ShowPopup</button>
+<Popup v-show="showPopup" @close="closePopup" />
+<div class="container">
+<tut-card title="machine learning" :content="tutContent"/>
+</div>
+<div>{{ tutTitle}}</div>
+</template>
+
+<script>
+import NavBar from './components/Nav/NavBar.vue'
+import Article from "./components/Article.vue"
+import CompA from "./components/nest/CompA.vue"
+import Popup from "./components/Popup.vue"
+import TutCard from "./components/Tut/TutCard.vue"
+
+console.log(Article)
+export default {
+  name: 'App',
+  data(){
+    return {
+      title:"zidea",
+      showPopup:false,
+      h1Html:"<h1 class='title'>Machine Learning Title</h1>",
+      defaultTitle:"default title",
+      tutTtitle:null,
+      tutContent:"快速排序算"
+    }
+  },
+  components: {
+    NavBar,
+    Article,
+    CompA,
+    Popup,
+    TutCard,
+  },
+  provide(){
+    return{
+      username : this.title
+    }
+  },
+  methods:{
+    closePopup(name){
+      this.showPopup = false
+      console.log(name)
+    }
+  }
+}
+</script>
+
+<style>
+
+</style>

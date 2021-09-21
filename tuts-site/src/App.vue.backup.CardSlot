@@ -1,0 +1,53 @@
+<template>
+<div class="container">
+<form class="form">
+<fieldset class="fieldset">
+<div class="control">
+<Input class="input" type="text" v-model="name"/>
+</div>
+</fieldset>
+</form>
+
+<Card>
+  <template v-slot:header>
+    <p class="card-header-title">
+      快速排序算法
+    </p>
+  </template>
+  <template v-slot:img>
+    <figure class="image is-4by3">
+      <img src="@/assets/quick_sort.png" alt="Placeholder image">
+    </figure>
+  </template>
+  <template v-slot:default>
+    <div class="content">
+      Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum.
+    </div>
+  </template>
+</Card>
+
+</div>
+
+</template>
+
+<script>
+import Input from "./components/Form/Input.vue"
+import Card from "./components/Tut/Card.vue"
+
+export default {
+  name: 'App',
+  data(){
+    return {
+      name:""
+    }
+  },
+  components: {
+    Input,
+    Card
+  }
+}
+</script>
+
+<style>
+
+</style>

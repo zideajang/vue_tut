@@ -1,0 +1,30 @@
+<template>
+<div class="container">
+  <ReplaceWatch/>
+  <ReplaceWatchReactive/>
+</div>
+
+</template>
+
+<script>
+import ReplaceWatch from './components/Option/ReplaceWatch.vue'
+import ReplaceWatchReactive from './components/Option/ReplaceWatchReactive.vue'
+export default {
+  
+  name: 'App',
+  
+  data(){
+    return {
+      name:"",
+    }
+  },
+  components:{
+    ReplaceWatch,
+    ReplaceWatchReactive
+  }
+}
+</script>
+
+<style>
+
+</style>

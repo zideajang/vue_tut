@@ -1,0 +1,26 @@
+<template>
+<div class="container">
+  <option-tut/>
+</div>
+
+</template>
+
+<script>
+import OptionTut from "./components/Option/OptionTut.vue"
+export default {
+  name: 'App',
+  data(){
+    return {
+      name:"",
+    }
+  },
+  components: {
+    OptionTut
+  },
+  
+}
+</script>
+
+<style>
+
+</style>

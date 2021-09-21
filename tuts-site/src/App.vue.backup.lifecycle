@@ -1,0 +1,51 @@
+<template>
+<div class="container">
+  <button class="button" @click="showChild =! showChild">Toggle Child</button>
+  <Child v-if="showChild" />
+</div>
+
+</template>
+
+<script>
+import Child from './components/Child.vue'
+export default {
+  name: 'App',
+  data(){
+    return {
+      name:"",
+      showChild:true
+    }
+  },
+  components: {
+    Child,
+  },
+  beforeCreate(){
+      console.log("Parent beforeCreate()")
+  },
+  created(){
+      console.log("Parent create()")
+  },
+  beforeMount(){
+      console.log("Parent beforeMount()")
+  },
+  mounted(){
+      console.log("Parent mounted()")
+  },
+  beforeUpdate(){
+      console.log("Parent beforeUpdate()")
+  },
+  updated(){
+      console.log("Parent updated()");
+  },
+  beforeUnmount(){
+      console.log("Parent beforeUnmount()");
+  },
+  unmounted(){
+      console.log("Parent unmounted()"); 
+  }
+}
+</script>
+
+<style>
+
+</style>

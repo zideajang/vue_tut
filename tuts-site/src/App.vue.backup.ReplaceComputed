@@ -1,0 +1,27 @@
+<template>
+<div class="container">
+  <ReplaceComputed/>
+</div>
+
+</template>
+
+<script>
+import ReplaceComputed from './components/Option/ReplaceComputed.vue'
+export default {
+  
+  name: 'App',
+  
+  data(){
+    return {
+      name:"",
+    }
+  },
+  components:{
+    ReplaceComputed
+  }
+}
+</script>
+
+<style>
+
+</style>

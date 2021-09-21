@@ -1,0 +1,25 @@
+<template>
+<div class="container">
+  <LoginForm/>
+</div>
+
+</template>
+
+<script>
+import LoginForm from './components/Form/LoginForm.vue'
+export default {
+  name: 'App',
+  data(){
+    return {
+      title:"machine learning",
+    }
+  },
+  components:{
+    LoginForm
+  },
+}
+</script>
+
+<style>
+
+</style>

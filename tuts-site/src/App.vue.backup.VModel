@@ -1,0 +1,27 @@
+<template>
+<div class="container">
+  <VModel/>
+</div>
+
+</template>
+
+<script>
+import VModel from './components/Form/VModel.vue'
+
+export default {
+  name: 'App',
+  
+  data(){
+    return {
+      name:"",
+    }
+  },
+  components:{
+    VModel
+  }
+}
+</script>
+
+<style>
+
+</style>

@@ -1,0 +1,26 @@
+<template>
+<div class="container">
+  <template-ref/>
+</div>
+
+</template>
+
+<script>
+import TemplateRef from './components/TemplateRef.vue'
+export default {
+  name: 'App',
+  data(){
+    return {
+      name:"",
+    }
+  },
+  components: {
+    TemplateRef,
+  },
+  
+}
+</script>
+
+<style>
+
+</style>

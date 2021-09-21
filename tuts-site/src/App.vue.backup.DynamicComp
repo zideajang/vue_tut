@@ -1,0 +1,63 @@
+<template>
+<div class="container">
+  <div class="tabs">
+  <ul>
+    <li><a @click="activeTab = 'TabA'">Tab A</a></li>
+    <li><a @click="activeTab = 'TabB'">Tab B</a></li>
+    <li><a @click="activeTab = 'TabC'">Tab C</a></li>
+  </ul>
+  
+</div>
+<div class="container">
+  <keep-alive>
+  <component :is="activeTab"/>
+  </keep-alive>
+  <!-- <TabA v-if="activeTab === 'TabA'"/>
+  <TabB v-if="activeTab === 'TabB'"/>
+  <TabC v-if="activeTab === 'TabC'"/> -->
+</div>
+<TutList>
+  <template v-slot:default="slotProps">
+    <div class="card-header">
+            <div class="card-header-title">{{slotProps.title}}({{slotProps.category}})</div>
+        </div>
+  </template>
+</TutList>
+<TutList>
+  <template v-slot:default="slotProps">
+    <div class="card-header">
+            <div class="card-header-title">{{slotProps.title}}</div>
+        </div>
+  </template>
+</TutList>
+</div>
+
+</template>
+
+<script>
+import TutList from "./components/TutList.vue"
+
+import TabA from "./components/Tabs/TabA.vue"
+import TabB from "./components/Tabs/TabB.vue"
+import TabC from "./components/Tabs/TabC.vue"
+
+export default {
+  name: 'App',
+  data(){
+    return {
+      name:"",
+      activeTab:'TabA'
+    }
+  },
+  components: {
+    TutList,
+    TabA,
+    TabB,
+    TabC,
+  }
+}
+</script>
+
+<style>
+
+</style>

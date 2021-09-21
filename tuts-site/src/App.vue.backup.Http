@@ -1,0 +1,28 @@
+<template>
+<div class="container">
+  <post-list/>
+  <create-post/>
+</div>
+
+</template>
+
+<script>
+import PostList from './components/Http/PostList.vue'
+import CreatePost from './components/Http/CreatePost.vue'
+export default {
+  name: 'App',
+  data(){
+    return {
+      name:"",
+    }
+  },
+  components: {
+    PostList,
+    CreatePost
+  }
+}
+</script>
+
+<style>
+
+</style>
