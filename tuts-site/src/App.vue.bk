@@ -1,0 +1,37 @@
+<template>
+
+<div class="container">
+  <Child >
+    <template v-slot="{data,hello}">
+      <button class="button" @click="clickOnBtn()">click Btn</button>
+      <h1 class="title">{{data}}</h1>
+      <button class="button" @click="hello">click Btn</button>
+    </template>
+  </Child>
+</div>
+</template>
+
+<script>
+import Child from './components/slotdemo/Child.vue'
+export default {
+  
+  name: 'App',
+  data(){
+    return {
+      fontSize:10
+    }
+  },
+  compontents:{
+    Child
+  },
+  methods:{
+    increment(){
+      this.fontSize += 5
+    },
+    clickOnBtn(){
+      alert("hello from parent")
+    }
+  }
+}
+</script>
+

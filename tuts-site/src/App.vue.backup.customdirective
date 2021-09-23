@@ -1,0 +1,25 @@
+<template>
+
+<div class="container">
+  <p v-font-size.large >hell directive</p>
+  <button class="button" @click="increment">increment fontSize</button>
+</div>
+</template>
+
+<script>
+export default {
+  
+  name: 'App',
+  data(){
+    return {
+      fontSize:10
+    }
+  },
+  methods:{
+    increment(){
+      this.fontSize += 5
+    }
+  }
+}
+</script>
+

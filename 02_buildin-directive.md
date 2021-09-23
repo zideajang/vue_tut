@@ -55,7 +55,7 @@ export default {
 
 ```
 
-在 Vue 数据绑定遵循 mustache 语法，大家可以了解一个 mustache 一些，对于一些小的项目或者比较鼓励项目可以引入 mustache 来实现数据绑定，早在之前自己就用用 mustache 实现过数据绑定。
+在 Vue 数据绑定遵循 mustache 语法，大家可以了解一个 mustache 一些，对于一些小的项目或者比较鼓励项目可以引入 mustache 来实现数据绑定，早在之前自己就用用 mustache 实现过数据绑定。在大括号之间仅支持表达式，并不支持声明语句，有关数据复杂操作交个 vue 来处理。
 
 ```vue
 <template>
@@ -148,12 +148,6 @@ at /Users/zidea2020/Desktop/myrepo/vue_tut/hello-world/src/App.vue:4:5
 
 ### 绑定 HTML
 
-
-
-```vue
-
-```
-
 如果我们想要将 html 绑定到界面上，如果还有
 
 ```vue
@@ -228,9 +222,9 @@ export default {
 
 
 
-### 绑定属性
+### 绑定属性(v-bind)
 
-
+`v-bind`将 HTML 某一个属性进行绑定，随后跟踪冒号表示要传入一个 Html 属性作为 `v-bind` 的一个参数，这里点和 `v-on` 有些
 
 ```vue
 <template>
@@ -262,11 +256,19 @@ export default {
 
 
 
-### 绑定样式
+### 绑定样式(class)
 
 ```vue
 <div v-bind:class="status">Log Level</div>
 ```
+
+可以通过 `v-bind:class` 或者简写为`:class` 来绑定样式，根据属性变量为 `status`，应用场景为例如通过不同颜色来表示表单验证结果是否通过。而且 `v-bind:class` 是在原有 `class` 基础上追加样式表。在 `v-biind:class` 可以可以接受表达式
+
+```vue
+<h2 v-bind:class="isPromoted && 'promoted'">Promoted Movie</h2>
+```
+
+通过一个变量可以控制是否添加 `promoted`样式到 DOM 元素上，也可以接受一个数组来将多个样式应用到一个元素 `:class="['oneClass','twoClass']"`,而且每一个元素也可以接受一个 js 表达式 `class="[isSuccess ? 'success':'danger',isPromoted && 'promoted']"` 。
 
 
 
@@ -380,10 +382,10 @@ div{
 
 
 
-| 名称        |      |      |
-| ----------- | ---- | ---- |
-| v-if/v-else |      |      |
-|             |      |      |
+| 名称        | 说明             | 备注         |
+| ----------- | ---------------- | ------------ |
+| v-if/v-else | 是否显示当前元素 | 可以用于模板 |
+|             |                  |              |
 
 ```vue
 <template>
@@ -490,7 +492,7 @@ export default{
 
 
 
-|       |      |      |
-| ----- | ---- | ---- |
-| -once |      |      |
-| V-pre |      |      |
+| 名称 |      |      |
+| ---- | ---- | ---- |
+| v-on |      |      |
+|      |      |      |
