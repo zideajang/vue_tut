@@ -1,0 +1,56 @@
+<template>
+  <div class="container">
+    <h1 class="title">事件绑定 v-on:事件名称 </h1>
+    <h1 class="title" v-on:mouseover="tutTitle='深度学习'">{{tutTitle}}</h1>
+    <button class="button" v-on:click="tutTitle='深度学习'">更改标题</button>
+
+    <section class="section">
+      <div class="title">count: {{count}}</div>
+      <button class="button" v-on:click="increment">increment</button>
+      <button class="button" v-on:click="decrement">decrement</button>
+      <button class="button" v-on:click="incrementWithNum(5,$event)">increment</button>
+      <button class="button" v-on:click="decrementWithNum(5)">decrement</button>
+    </section>
+  </div>
+</template>
+
+<script>
+// import Child from './components/Child.vue'
+// import axios from 'axios'
+export default {
+  name: 'App',
+  data(){
+    return {
+      tutTitle:"机器学习",
+      count:0
+    }
+  },
+  components: {
+    // Child,
+  },
+  methods:{
+    increment(event){
+      this.count += 1
+      console.log(event);
+      
+    },
+    incrementWithNum(num,event){
+      
+      this.count += num
+      console.log(event);
+    },
+    decrement(){
+      this.count -= 1
+    },
+    decrementWithNum(num){
+      this.count -= num
+    }
+  }
+  
+  
+}
+</script>
+
+<style>
+
+</style>

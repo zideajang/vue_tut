@@ -1,0 +1,91 @@
+<template>
+  <div class="container">
+    <!-- demo 01 using v-for for range-->
+    <div class="box" v-for="item in 2" :key="item">
+      <div>tutorial</div>
+    </div>
+    <!-- demo 02 using template element-->
+    <template v-for="item in 2">
+      <button class="button" :key="item">get more info</button>
+      <div class="box" :key="item">{{item}}</div>
+    </template>
+    <!-- demo 03 using v-for for Object -->
+    <div class="box" v-for="(item,key,index) in tut" :key="index">
+      {{item}}{{key}}
+    </div>
+    <!-- demo 04 using v-for for array -->
+    <div class="card" v-for="tut in tuts" :key="tut.id">
+      <div class="card-header">
+        <div class="card-header-title">{{tut.title}}</div>
+      </div>
+      <div class="card-footer">
+        <span class="label">{{tut.category}}</span>
+      </div>
+    </div>
+
+    <!-- demo 05 Filtering Lists with compute-->
+    <div class="card" v-for="tut in catetoryDeepLearningtuts" :key="tut.id">
+      <div class="card-header">
+        <div class="card-header-title">{{tut.title}}</div>
+      </div>
+      <div class="card-footer">
+        <span class="label">{{tut.category}}</span>
+      </div>
+    </div>
+    <!-- demo 06 Filtering Lists with methods-->
+    <div class="card" v-for="tut in filterItems(tuts)" :key="tut.id">
+      <div class="card-header">
+        <div class="card-header-title">{{tut.title}}</div>
+      </div>
+      <div class="card-footer">
+        <span class="label">{{tut.category}}</span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+// import Child from './components/Child.vue'
+// import axios from 'axios'
+export default {
+  name: 'App',
+  data(){
+    return {
+      title:"machine learning",
+      tut:{
+        title:"nueral network",
+        lesson:12,
+        category:'machine learning'
+      },
+      tuts:[
+        {id:0, title:"neural nework",lesson:12,category:'dl'},
+        {id:1, title:"recurrent neural nework",lesson:12,category:'dl'},
+        {id:2, title:"decision tree",lesson:6,category:'ml'},
+      ]
+    }
+  },
+  components: {
+    // Child,
+  },
+  methods:{
+    filterItems: function(tuts) {
+      return tuts.filter(function(tut) {
+        return tut.category === 'dl';
+      })
+    }
+
+  },
+  computed:{
+    catetoryDeepLearningtuts: function() {
+      return this.tuts.filter(function(tut) {
+        return tut.category === 'dl';
+      })
+    }
+  }
+  
+}
+</script>
+
+<style>
+
+</style>

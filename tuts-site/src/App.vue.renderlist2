@@ -1,0 +1,107 @@
+<template>
+  <div class="container">
+    <h1 class="title">渲染列表</h1>
+    <section class="section">
+    <h2 class="subtitle">v-for 渲染范围</h2>
+    <div v-for="item in 3" :key="item">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-header-title">机器学习</div>
+        </div>
+      </div>
+    </div>
+    </section>
+    <section class="section">
+    <h2 class="subtitle">v-for 应用于模板</h2>
+    <template v-for="item in 3" >
+      <h1 class="subtitle" :key="item">{{item}} 机器学习标题</h1>
+      <p class="content" :key="item">{{item}} 机器学习内容</p>
+    </template>
+    </section>
+    <section class="section">
+    <h2 class="subtitle">v-for 渲染对象</h2>
+    <div v-for="(item,key,index) in tut" :key="index">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-header-title">{{key}} : {{item}}</div>
+        </div>
+      </div>
+    </div>
+    </section>
+    <section class="section">
+    <h2 class="subtitle">v-for 渲染数组</h2>
+    <div v-for="(tut,index) in tuts" :key="index">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-header-title">{{tut.title}} : {{tut.lesson}}</div>
+        </div>
+      </div>
+    </div>
+    </section>
+    <section class="section">
+    <h2 class="subtitle">v-for 筛选 computed</h2>
+    <div v-for="(tut,index) in catetoryDeepLearningtuts" :key="index">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-header-title">{{tut.title}} : {{tut.lesson}}</div>
+        </div>
+      </div>
+    </div>
+    </section>
+    <section class="section">
+    <h2 class="subtitle">v-for 筛选 methods</h2>
+    <div v-for="(tut,index) in filterItems(tuts)" :key="index">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-header-title">{{tut.title}} : {{tut.lesson}}</div>
+        </div>
+      </div>
+    </div>
+    </section>
+  </div>
+</template>
+
+<script>
+// import Child from './components/Child.vue'
+// import axios from 'axios'
+export default {
+  name: 'App',
+  data(){
+    return {
+      tut:{
+        title:"nueral network",
+        lesson:12,
+        category:'machine learning'
+      },
+      tuts:[
+        {id:0, title:"neural nework",lesson:12,category:'dl'},
+        {id:1, title:"recurrent neural nework",lesson:12,category:'dl'},
+        {id:2, title:"decision tree",lesson:6,category:'ml'},
+      ]
+    }
+  },
+  components: {
+    // Child,
+  },
+  methods:{
+    filterItems: function(tuts) {
+      return tuts.filter(function(tut) {
+        return tut.category === 'dl';
+      })
+    }
+
+  },
+  computed:{
+    catetoryDeepLearningtuts: function() {
+      return this.tuts.filter(function(tut) {
+        return tut.category === 'dl';
+      })
+    }
+  }
+  
+}
+</script>
+
+<style>
+
+</style>

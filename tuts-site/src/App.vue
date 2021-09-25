@@ -1,70 +1,45 @@
 <template>
-<div data-tut="tut" class="container">
-  <button class="button" @click="showChild =! showChild">Toggle Child</button>
-  <Child v-if="showChild" />
+<div class="container">
+  <h1 class="title">Computed</h1>
+  <h1 class="title"> {{description}}</h1>
+  <button @click=""
 </div>
-
 </template>
 
 <script>
-import Child from './components/Child.vue'
-import axios from 'axios'
 export default {
   name: 'App',
   data(){
     return {
       title:"machine learning",
-      showChild:true,
-      posts:[]
+      lesson:12,
+      totalLesson:0,
+      tuts:[
+        {id:0, title:'machine learning',lesson:12},
+        {id:1, title:'deep learning',lesson:16},
+        {id:2, title:'meta learning',lesson:8},
+      ]
     }
   },
+
+  computed:{
+    description(){
+      return `description: ${this.title} , ${this.lesson}`
+    }
+  }, 
   components: {
-    Child,
   },
-  beforeCreate(){
-      // 返回组件实例
-      console.log("beforeCreate",this)
-      console.log("beforeCreate",this.title)
-      console.log("Parent beforeCreate()")
-  },
-  created(){
-      console.log("Parent create()")
-      axios.get('https://jsonplaceholder.typicode.com/posts')
-        .then((response) => {
-            console.log(response.data)
-            this.posts = response.data
-        })
-        .catch((error)=>{
-            console.log(error)
-        });
-  },
-  beforeMount(){
-      //
-      console.log("Parent beforeMount()")
-      console.log(this.$el)//null
-      // console.log(this.$el.dataset.tut)//tut
-  },
-  mounted(){
-      //这里和 vue2 感觉约有不同
-      console.log("Parent mounted()")
-      console.log(this.$el)//<div data-tut='tut' ...
-      console.log(this.$el.dataset.tut) //tut
-  },
-  beforeUpdate(){
-      console.log("Parent beforeUpdate()")
-  },
-  updated(){
-      console.log("Parent updated()");
-  },
-  beforeUnmount(){
-      console.log("Parent beforeUnmount()");
-  },
-  unmounted(){
-      console.log("Parent unmounted()"); 
-  }
+    
 }
 </script>
 
 <style>
-
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 </style>

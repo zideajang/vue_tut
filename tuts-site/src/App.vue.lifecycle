@@ -1,0 +1,79 @@
+<template>
+  <div ref="root">
+  <button class="button" @click="showChild =! showChild">Toggle Child</button>
+  <!-- <Child v-if="showChild" /> -->
+  </div>
+</template>
+
+<script>
+// import Child from './components/Child.vue'
+// import axios from 'axios'
+export default {
+  name: 'App',
+  data(){
+    return {
+      title:"machine learning",
+      showChild:true,
+      posts:[]
+    }
+  },
+  components: {
+    // Child,
+  },
+  beforeCreate(){
+      // 返回组件实例
+      console.log("Parent beforeCreate() start")
+      console.log("beforeCreate",this)//Proxy
+      console.log("beforeCreate",this.title)
+      console.log("Parent beforeCreate() end")
+      
+  },
+  created(){
+      console.log("Parent create() start")
+      
+      // axios.get('https://jsonplaceholder.typicode.com/posts')
+      //   .then((response) => {
+      //       console.log(response.data)
+      //       this.posts = response.data
+      //   })
+      //   .catch((error)=>{
+      //       console.log(error)
+      //   });
+
+      console.log("create",this)//Proxy
+      console.log("create",this.title)//machine learning
+
+      console.log("Parent create() start end")
+  },
+  beforeMount(){
+      //
+      console.log("Parent beforeMount() start")
+      console.log(this.$el)//null
+      // console.log(this.$el.dataset.tut)//tut
+      console.log("Parent beforeMount() end")
+  },
+  mounted(){
+      //这里和 vue2 感觉约有不同
+      console.log("Parent mounted() start")
+      console.log(this.$el)//<div data-tut='tut' ...
+      // console.log(this.$el.dataset.tut) //tut
+      console.log("Parent mounted() end")
+  },
+  beforeUpdate(){
+      console.log("Parent beforeUpdate()")
+  },
+  updated(){
+      console.log("Parent updated()");
+  },
+  beforeUnmount(){
+      console.log("Parent beforeUnmount()");
+  },
+  unmounted(){
+      console.log("Parent unmounted()"); 
+  }
+}
+</script>
+
+<style>
+
+</style>
