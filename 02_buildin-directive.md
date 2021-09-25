@@ -376,16 +376,20 @@ div{
 
 
 
+
+
+
+
 ## 条件渲染(Conditional Rendering)
 
 很多情况下，我们都需要根据数据来控制显示/或者不显示某些元素
 
 
 
-| 名称        | 说明             | 备注         |
-| ----------- | ---------------- | ------------ |
-| v-if/v-else | 是否显示当前元素 | 可以用于模板 |
-|             |                  |              |
+| 名称        | 说明                                                     | 备注         |
+| ----------- | -------------------------------------------------------- | ------------ |
+| v-if/v-else | 是否显示当前元素                                         | 可以用于模板 |
+| V-show      | False 隐藏将组件 style 中 display 属性设置为 none 来隐藏 |              |
 
 ```vue
 <template>
@@ -416,7 +420,119 @@ export default{
 
 ### 渲染列表
 
-绑定列表
+#### v-for 用于渲染范围
+
+将数据集的列表渲染到界面上，内置的 v-for 指令可以对 item 进行循环。，在渲染列表中使用`item in items` 这种指定表达方式。我们可以在 ` v-for` 指令中使用一个范围的数字来迭代一个指定的次数。
+
+```vue
+    <div class="box" v-for="item in 12" :key="item">
+      {{item}}
+    </div>
+```
+
+
+
+#### v-for 用于渲染多个元素
+
+我们知道指令仅可以作用到将其添加到元素，如果想要将 `v-for` 指定作用于多个元素，可以将添加包裹这些元素的 `template` 标签上。
+
+```vue
+    <template v-for="item in 2">
+      <button class="button" :key="item">get more info</button>
+      <div class="box" :key="item">{{item}}</div>
+    </template>
+```
+
+
+
+#### v-for 用于渲染对象
+
+v-for 也可以用于将一个对象的所有属性值一一遍历出来，接下来通过代码样式一下，首先我们在 data 中添加 tut 对象，这个对象具有 3 个属性分别为 title、lesson 和 category。
+
+```vue
+  data(){
+    return {
+      title:"machine learning",
+      tut:{
+        title:"nueral network",
+        lesson:12,
+        category:'machine learning'
+      }
+    }
+  },
+```
+
+可以不仅可以遍历对象每个属性值，还可以遍历属性名称和该属性值对应循环的索引为 index
+
+```vue
+    <div class="box" v-for="(item,key,index) in tut" :key="index">
+      {{item}}{{key}}
+    </div>
+```
+
+
+
+#### v-for 用于渲染数组
+
+通常 `v-for` 也可以用于遍历一个数组，下面在 data 中添加一个有对象组成的数组，然后就可以通常遍历数组。
+
+```vue
+      tuts:[
+        {id:0, title:"neural nework",lesson:12,category:'dl'},
+        {id:1, title:"recurrent neural nework",lesson:12,category:'dl'},
+        {id:2, title:"decision tree",lesson:6,category:'ml'},
+      ]
+```
+
+
+
+```vue
+    <div class="card" v-for="tut in tuts" :key="tut.id">
+      <div class="card-header">
+        <div class="card-header-title">{{tut.title}}</div>
+      </div>
+      <div class="card-footer">
+        <span class="label">{{tut.category}}</span>
+      </div>
+    </div>
+```
+
+
+
+在用 `v-for`更新已渲染的元素列表的时候，如果没有跟踪 key 那么就可能重新渲染整个数组，如果设置了 key，会使用就地复用的策略；这就是说列表数据修改的时候，会根据 key 值去判断某个值是否修改，如果修改了就重新渲染，不然就复用之前的元素。
+
+
+
+#### 筛选列表
+
+```vue
+  computed:{
+    catetoryDeepLearningtuts: function() {
+      return this.tuts.filter(function(tut) {
+        return tut.category === 'dl';
+      })
+    }
+  }
+```
+
+
+
+```vue
+<div class="card" v-for="tut in catetoryDeepLearningtuts" :key="tut.id">
+      <div class="card-header">
+        <div class="card-header-title">{{tut.title}}</div>
+      </div>
+      <div class="card-footer">
+        <span class="label">{{tut.category}}</span>
+      </div>
+    </div>
+```
+
+
+
+
+
+
 
 ```vue
 <template>
@@ -492,7 +608,31 @@ export default{
 
 
 
-| 名称 |      |      |
-| ---- | ---- | ---- |
-| v-on |      |      |
-|      |      |      |
+通过两层嵌套，`v-for` 可以嵌套另一个 `v-for`。
+
+```vue
+    <div v-for="category in cate" :key="category.category">
+        <div>{{category.category}}</div>
+        <h5 v-for="tut in category.tuts" :key="tut.title">{{tut.title}}</h5>
+    </div>
+```
+
+
+
+#### 事件绑定
+
+click、mouserover 
+
+| 名称          |      |      |
+| ------------- | ---- | ---- |
+| V-on:事件名称 |      |      |
+|               |      |      |
+
+
+
+#### V-model 表单处理
+
+文本框
+
+textarea
+

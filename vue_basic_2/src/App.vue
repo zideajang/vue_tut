@@ -1,31 +1,37 @@
 <template>
-<form class="form">
-<div class="control">
-  <label for="title">title</label>
-  <input type="text" class="input" v-model="title"/>
-  <p>{{title}}</p>
-</div>
-</form>
+  <div id="app">
+    <div>Hello Vue2.0</div>
+  </div>
 </template>
 
 <script>
+
 export default {
   name: 'App',
   data(){
     return {
-      title:"title"
+      title:'machine learning',
+      tuts:[]
     }
   },
   components: {
+    
   }
+  ,beforeCreate(){
+    console.log(this)
+    console.log(this.title)
+  },created(){
+    //puplating data
+  },
+  beforeMount(){
+    console.log(this.$el)
+    console.log(this.$el)
+  }
+
 }
 </script>
 
 <style>
-.example{
-  color:orangered;
-}
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

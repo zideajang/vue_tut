@@ -14,6 +14,16 @@
 
 <img src="./images/vue_lifecycle.png">
 
+```vue
+<template>
+  <div id="app">
+    <div>Hello Vue2.0</div>
+  </div>
+</template>
+```
+
+
+
 ### beforeCreate 和 create
 
 <img src="./images/lifecycle_hook_01.png" width="75%"/>
@@ -34,7 +44,7 @@ data(){
   },
   beforeCreate(){
       // 返回组件实例
-      console.log("beforeCreate",this) //beforeCreate Proxy {…}
+      console.log("beforeCreate",this) //VueComponent
       console.log("beforeCreate",this.title) //beforeCreate undefined
       console.log("Parent beforeCreate()")
   },
@@ -62,14 +72,24 @@ data(){
 
 
 
+#### beforeMount
+
+可能并不会经常用到这个回调函数，因为是在 DOM 渲染前运行该函数。但是如果想要你应用嵌入其他程序中，这是就需要应用程序外部数据，例如用到其他的库
+
+
+
+#### mounted 
+
+这是
+
 
 
 A Vue component can go through 4 phases
 
-- Creation
-- Mounting
-- Updating
-- Unmounting
+- 创建(Creation): 在组件创建时执行
+- 挂载(Mounting): 在组件加载时执行
+- 更新(Updating): 当响应式数据被修改时执行
+- 卸载(Unmounting)
 
 Lifecycle hooks are methods that allow us to hook into or tap into these different phases in the lifecycle of a component and execute some code
 

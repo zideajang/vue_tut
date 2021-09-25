@@ -1,32 +1,36 @@
+今天我们将讨论什么是指令、以及指令具有有什么作用，以及如果创建自定义的指令。
+
+
+
 ### 什么是指令
 
 指定就是应用于 HTML 元素的一些特定**属性**，例如 class 或者 style 这些属性， 在 vue 提供许多内置的指令，这些指令都是以 v 开头然后是一个`-`随后紧跟一个有意指令名称。
 
 
 
-之前我们介绍过
+### 为什么需要指令
+
+指令是最好操作 DOM 元素的方式，之前我们介绍 v-if 、v-bind、v-show 这些 vue 内置指令无疑都是用来控制 DOM 元素的指令。所以在学习 vue 过程少不了指令学习。
 
 
 
-也可以自己定义一个自己的指令(directives)
-
-重用方法来自定义 DOM 的功能
-
-许多 Vue 插件使用
+vue 通常也支持开发者自己创建一个指令来达到对 DOM 操作功能的复用。许多 Vue 的插件都有自己一套的指令集方便开发人员使用。
 
 
 
 ### Directive Hooks
 
+有关指令的钩子函数 Vue2 和 Vue3 之间是不同的，所以这里有必要分别给大家列出 vue2 directive Hooks 和 vue3 directive Hooks。
+
 #### Vue2 Hooks
 
 | Hook 名称        | Hook 说明                  |      |
 | ---------------- | -------------------------- | ---- |
-| bind             | When bound to element      |      |
-| inserted         | Bound element is inserted  |      |
-| update           | When element updates(data) |      |
-| componentUpdated | children updated           |      |
-| unbind | when directive is removed           |      |
+| bind             | 当绑定到元素       |      |
+| inserted         | 绑定元素插入到 |      |
+| update           | 当元素更新了数据   |      |
+| componentUpdated | 在子组件更新后     |      |
+| unbind | 当指令从元素中移除 |      |
 
 
 #### Vue2 Hooks
