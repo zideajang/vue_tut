@@ -1,18 +1,17 @@
 <template>
     <div>
         <h1>Component A</h1>
-        <comp-b/>
+        <!-- <comp-b/> -->
     </div>
 </template>
 
 <script>
-    import CompB from "./CompB.vue"
-    console.log(CompB)
+    // import CompB from "./CompB.vue"
     export default {
         name:"CompA",
-        components:{
-            CompB
-        }
+        // components:{
+        //     CompB
+        // }
     }
 </script>
 

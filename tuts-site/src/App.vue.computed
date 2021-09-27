@@ -1,0 +1,81 @@
+<template>
+<div class="container">
+  <h1 class="title">Computed</h1>
+  <h1 class="subtitle">{{description}}</h1>
+  <!-- <h1 class="title">total lesson:{{totalLesson}}</h1> -->
+  <h1 class="title">total lesson:{{totalLesson}}</h1>
+  <h1 class="title">{{getTotalLesson()}}</h1>
+  <!-- <button class="button" @click="totalLesson = tuts.reduce((total,curr)=>(total = total + curr.lesson),0)" >cal</button> -->
+  <h1 class="title">count: {{count}}</h1>
+  <button class="button" @click="count += 1">increment</button>
+  <template v-for="tut in filteredTuts" :key="tut.id">
+    <div  class="box">{{tut.title}}</div>
+  </template>
+  <div class="control">
+    <input class="input" type="text" v-model="description">
+    </div>
+</div>
+</template>
+
+<script>
+export default {
+  name: 'App',
+  data(){
+    return {
+      title:'machinelearning',
+      lesson:12,
+      // totalLesson:0,
+      count:0,
+      tuts:[
+        {id:0,title:"machine learning",lesson:12},
+        {id:1,title:"deep learning",lesson:16},
+        {id:2,title:"meta learning",lesson:8},
+      ]
+    }
+  },
+  methods:{
+    getTotalLesson(){
+      console.log('get total lesson in methods')
+      return this.tuts.reduce((total,curr)=>(total = total + curr.lesson),0)
+    }
+  },
+  computed:{
+    description:{
+      get(){
+        return `${this.title} ${this.lesson}`
+      },
+      set(value){
+        let description = value.split(' ');
+        this.title = description[0];
+        this.lesson = description[1];
+      }
+      
+    },
+    filteredTuts(){
+      return this.tuts.filter((tut)=>(tut.lesson > 10))
+    },
+    totalLesson:{
+      get(){
+        return this.tuts.reduce((total,curr)=>(total = total + curr.lesson),0)
+      }
+      // console.log('get total lesson in computed')
+      // 
+    }
+  },
+  
+  components: {
+  },
+    
+}
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>

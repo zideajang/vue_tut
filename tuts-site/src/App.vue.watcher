@@ -1,0 +1,86 @@
+<template>
+<div class="container">
+  <h1 class="title">watcher</h1>
+  <h1 class="subtitle">{{description}}</h1>
+  <!-- <h1 class="title">{{title}} likes:{{likes}}</h1> -->
+
+  <button class="button" @click="likes +=1">increase like</button>
+  <button class="button" @click="likes -=1">decrease like</button>
+
+  <div class="box">{{msg}}</div>
+
+  
+  <!-- <div class="box">{{tut}}</div> -->
+  <div class="control">
+    <input type="text" class="input" v-model="tut.title"/>
+  </div>
+  
+  
+</div>
+</template>
+
+<script>
+export default {
+  name: 'App',
+  data(){
+    return {
+      title:'machine learning',
+      lesson:0,
+      likes:0,
+      msg:'',
+      description:'',
+      tut:{
+        title:"machine learing",
+        lesson:0
+      }
+    }
+  },
+  
+  watch:{
+    likes(newValue,oldValue){
+      if(newValue > oldValue && newValue == 10){
+        this.msg='不错不错'
+      }
+    },
+    title:{
+      handler(newValue){
+        this.description = newValue + ' ' + this.lesson
+      },
+      immediate:true
+    },
+    lesson:{
+      hander(newValue){
+        this.description = this.title + ' ' + newValue
+      },
+      immediate:true
+    },
+    tut:{
+      handler(newValue){
+        console.log(newValue);
+      },
+      deep:true
+    }
+      
+  },
+
+  // computed:{
+  //   description(){
+  //     return `${this.title} ${this.lesson}`;
+  //   }
+  // },
+  components: {
+  },
+    
+}
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
